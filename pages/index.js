@@ -1,5 +1,6 @@
-import Link from 'next/link'
 import {promises as fs} from 'fs'
+import { useState } from 'react'
+import ConfigListItem from '../components/config-list-item'
 
 const configDirectory = process.env.CONFIG_DIR
 
@@ -13,20 +14,20 @@ export async function getStaticProps(context) {
 }
 
 export default function Home({filenames}) {
-  console.log(filenames);
+  const [filteredFiles, setFilteredFiles] = useState(filenames) 
   return (
-    <div >
-        {filenames.map((filename) => (
-          <div key={filename} >
-            <div >
-            <Link href={`/${encodeURIComponent(filename)}`}>
-              <a>
-                <p>{filename.replace('.json', '')}</p>
-              </a>
-            </Link>
+    <div className="container mx-auto my-3">
+          <div id="config-searchbar" className="">
+            <input 
+              className="border-solid border-4 border-blue-200 h-10 w-1/3" type="search"  
+              onChange={
+                (e) => setFilteredFiles(
+                  filenames.filter((f) => f.toLowerCase().startsWith(e.target.value)))
+              } />
           </div>
-          </div>
-        ))}
+          {filteredFiles.map((filename) => (
+            <ConfigListItem key={filename} filename={filename} />
+          ))}
     </div>
   )
 }
