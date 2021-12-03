@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import styles from '../styles/Home.module.css'
 import Inspector from "react-json-inspector"
 import {promises as fs} from 'fs'
 
@@ -27,7 +26,7 @@ export async function getStaticProps(context) {
 
 export default function Config({data}) {
   return (
-    <div className={styles.container}>
+    <div >
       <Inspector data={data} />
       <Link href="/">
         <a>Home</a>
