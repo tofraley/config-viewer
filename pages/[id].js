@@ -24,7 +24,7 @@ export async function getStaticProps(context) {
   }
 }
 
-export default function Config({data}) {
+export default function ConfigDetail({data}) {
   return (
     <div >
       <Inspector data={data} />
