@@ -9,7 +9,6 @@ export async function getStaticProps() {
   const filteredFilenames = 
     fs.readdirSync(configDirectory)
       .filter((name) => name.endsWith('.json'));
-//console.log(filteredFilenames);
   const files = filteredFilenames.map((filename) => {
     const fullPath = join(configDirectory, filename);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
@@ -31,19 +30,27 @@ export async function getStaticProps() {
 }
 
 export default function Home({files}) {
-  const [filteredFiles, setFilteredFiles] = useState(files);
   const [selectedFile, setSelectedFile] = useState(0);
   return (
-    <div className="container ml-8 my-3">
       <div className="grid gap-2 grid-cols-2">
+        <ConfigSelector 
+          files={files}
+          setSelectedFile={setSelectedFile} />
+        <ConfigDisplay { ...files[selectedFile]} />
+      </div>
+  )
+}
+
+function ConfigSelector({files, setSelectedFile}) {
+  const [filteredFiles, setFilteredFiles] = useState(files);
+  return (
         <div className="">
           <input 
             placeholder="Search..."
             className="text-lg border-solid border-4 border-blue-300 rounded-lg p-3 h-10 w-full" type="search"  
-            onChange={
-              (e) => setFilteredFiles(
-                files.filter((f) => f.filename.toLowerCase().startsWith(e.target.value.toLowerCase())))
-            }
+            onChange={(e) => setFilteredFiles(
+                files.filter((f) => f.filename.toLowerCase().startsWith(e.target.value.toLowerCase()))
+          )}
             />
           <div className="border-solid border-4 border-blue-300 rounded-lg mt-1 min-h-full">
             {filteredFiles.map((file, i) => (
@@ -57,17 +64,19 @@ export default function Home({files}) {
             ))}
           </div>
         </div>
+  )
+}
+function ConfigDisplay(file) {
+  return (
         <div>
             <div className="text-lg border-solid border-4 border-green-300 rounded-lg pl-2 h-10 w-full">
-              <h1 className="">{files[selectedFile].filename.replace('.json', '') || "Config Viewer"}</h1>
+              <p className="">{file.filename.replace('.json', '') || "Config Viewer"}</p>
             </div>
           <div className="mt-1 min-w-max min-h-full max-w-full border-solid border-4 border-green-300 rounded-lg">
             <div className="p-2">
-              <Inspector data={files[selectedFile].content} />
+              <Inspector data={file.content} />
             </div>
           </div>
         </div>
-      </div>
-    </div>
   )
 }
