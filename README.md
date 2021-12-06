@@ -1,7 +1,7 @@
 ## Running locally
 
 1. Create a file called `.env.local` at the root level of this project. That's probably where this file is located.
-2. Populate your new file with a variable called `CONFIG_DIR`.
+2. Add a variable called `CONFIG_DIR`.  The value should be the directory of your configs are.
 ```
 CONFIG_DIR=c://path/to/configs
 ```
@@ -13,4 +13,8 @@ yarn dev
 ```
 4. Open http://localhost:3000.
 
-The server will only attempt to parse json files.  If it can't parse a certain file, it will log that and move on to the next file.
+## Notes
+- Only attempt to parse json files
+- If it can't parse a certain file, it will log that and move on to the next file
+- Only looks in a single directory, specified by the `CONFIG_DIR` environment variable
+- Attempts to parse all json files in `CONFIG_DIR`
