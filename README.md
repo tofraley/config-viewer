@@ -14,7 +14,7 @@ yarn dev
 4. Open http://localhost:3000.
 
 ## Notes
-- Only attempt to parse json files
+- Can only parse json files
 - If it can't parse a certain file, it will log that and move on to the next file
-- Only looks in a single directory, specified by the `CONFIG_DIR` environment variable
+- Can only look in a single directory, specified by the `CONFIG_DIR` environment variable
 - Attempts to parse all json files in `CONFIG_DIR`
