@@ -13,4 +13,4 @@ yarn dev
 ```
 4. Open http://localhost:3000.
 
-The server will only attempt to parse json files.  If it can't it will log that and move on.
+The server will only attempt to parse json files.  If it can't parse a certain file, it will log that and move on to the next file.
