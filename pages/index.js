@@ -19,6 +19,7 @@ export async function getStaticProps() {
     } catch(ex) {
       console.log("There was a problem");
       console.log(ex);
+      content = "Could not parse content"
     }
 
     return { 
