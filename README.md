@@ -11,3 +11,6 @@ npm run dev
 # or
 yarn dev
 ```
+4. Open http://localhost:3000.
+
+The server will only attempt to parse json files.  If it can't it will log that and move on.
