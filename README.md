@@ -1,6 +1,7 @@
 ## Running locally
 
-Create a file called `.env.local`, and populate it with a variable called `CONFIG_DIR`.
+Create a file called `.env.local` at the root level of this project. That's probably where this file is located.
+Populate your new file with a variable called `CONFIG_DIR`.
 ```
 CONFIG_DIR=c://path/to/configs
 ```
