@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind screens;
+
 .json-inspector,
 .json-inspector__selection {
     font: 14px/1.4 Consolas, monospace;
@@ -12,6 +17,7 @@
     position: relative;
 
     cursor: default;
+    @apply hover:bg-green-200;
 }
 
 .json-inspector__line:after {
@@ -19,8 +25,8 @@
 
     position: absolute;
     top: 0;
-    left: -200px;
-    right: -50px;
+    left: 0px;
+    right: 0px;
     bottom: 0;
     z-index: -1;
 
@@ -28,7 +34,6 @@
 }
 
 .json-inspector__line:hover:after {
-    background: rgba(0, 0, 0, 0.06);
 }
 
 .json-inspector__leaf_composite > .json-inspector__line {
@@ -48,6 +53,7 @@
     min-width: 300px;
     margin: 0 10px 10px 0;
     padding: 2px;
+    @apply m-2 text-lg p-1 h-10 rounded border-2 border-green-300 focus:outline-none;
 }
 
 .json-inspector__key {
