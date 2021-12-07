@@ -53,7 +53,7 @@
     min-width: 300px;
     margin: 0 10px 10px 0;
     padding: 2px;
-    @apply m-2 text-lg p-1 h-10 rounded border-2 border-green-300 focus:outline-none;
+    @apply m-2 text-lg p-1 h-10 rounded border-2 border-green-300 focus:outline-none w-1/2;
 }
 
 .json-inspector__key {
