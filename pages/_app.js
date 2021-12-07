@@ -1,11 +1,12 @@
 import '../styles/json-inspector.css'
 import 'tailwindcss/tailwind.css'
+import Layout from '../components/layout'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div className="container ml-8 my-3">
+    <Layout>
       <Component {...pageProps} />
-    </div>
+    </Layout>
   )}
 
 export default MyApp
