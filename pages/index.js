@@ -16,8 +16,7 @@ export async function getStaticProps() {
     try {
       content = JSON.parse(fileContents);
     } catch(ex) {
-      console.log("There was a problem");
-      console.log(ex);
+      console.log("Could not parse content");
       content = "Could not parse content"
     }
 
@@ -35,27 +34,28 @@ export default function Home({files}) {
     <div className="grid gap-2 grid-cols-2">
       <ConfigSelector 
         files={files}
+        selectedFile={selectedFile}
         setSelectedFile={setSelectedFile} />
       <ConfigDisplay { ...files[selectedFile]} />
     </div>
   )
 }
 
-function ConfigSelector({files, setSelectedFile}) {
+function ConfigSelector({files, selectedFile, setSelectedFile}) {
   const [filteredFiles, setFilteredFiles] = useState(files);
   return (
     <div className="border-solid border-4 border-blue-300 rounded-lg">
       <input 
         placeholder="Search..."
-        className="m-2 text-lg p-1 h-10 rounded border-2 border-blue-300 focus:outline-none" type="search"  
+        className="mt-2 ml-2 text-lg pl-1 h-10 rounded border-2 border-blue-300 focus:outline-none w-1/2" type="search"  
         onChange={(e) => setFilteredFiles(
             files.filter((f) => f.filename.toLowerCase().startsWith(e.target.value.toLowerCase()))
       )}
         />
-      <div className="pl-2 mt-1 min-h-full">
+      <div className="ml-2 mr-2 min-h-full">
         {filteredFiles.map((file, i) => (
           <h2
-            className="m-1 rounded text-lg cursor-pointer hover:bg-blue-200"
+            className={`${selectedFile == i ? 'bg-blue-100' : ''} pl-1 rounded text-lg cursor-pointer hover:bg-blue-200`}
             key={i} 
             onClick={(e) => setSelectedFile(i)}
             >
