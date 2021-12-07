@@ -1,4 +1,4 @@
-export default function SelectorSearch({files, changeHandler}) {
+export default function Search({changeHandler}) {
   return (
     <input 
       placeholder="Search..."
