@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Inspector from "react-json-inspector"
 import Box from "../components/box"
 import Selector from "../components/selector"
+import useGroups from '../services/groups'
 
 const configDirectory = process.env.CONFIG_DIR
 
@@ -35,11 +36,12 @@ export default function Home({files}) {
 
   const [selectedFile, setSelectedFile] = useState(0);
   const filenames = files.map((f) => f.filename.replace('.json', ''));
+  const [groups, setGroups] = useGroups(filenames)
 
   return (
     <div className="grid gap-2 grid-cols-2">
       <Box borderColor='blue'>
-        <Selector data={filenames} selectedItem={selectedFile} setSelectedItem={setSelectedFile} />
+        <Selector groups={groups} selectedItem={selectedFile} setSelectedItem={setSelectedFile} />
       </Box>
       <Box borderColor='green'>
         <Inspector className="text-lg font-sans" data={files[selectedFile].content} filterOptions={{ignoreCase: true}} />
