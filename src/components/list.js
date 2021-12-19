@@ -6,9 +6,9 @@ const List = ({data, selectedItem, setSelectedItem}) => {
         {data.map((file, i) => (
           <ListItem key={i} display={file} 
             isSelected={(selectedItem == i)}
-            clickHandler={(e) => {
+            clickHandler={(e) => (
               setSelectedItem(i)
-            }}/>
+            )}/>
         ))}
       </div>
   );
