@@ -3,7 +3,7 @@ import useStorage from './storageService'
 function getDefaultGroups(data) {
 
   const firstHalf = data.slice(0, data.length/2)
-  const secondHalf = data.slice(data.length/2+1)
+  const secondHalf = data.slice(data.length/2)
   return [{
     id: "first-half",
     name: "First Half",

@@ -1,4 +1,5 @@
 import List from "./list";
+import ListItem from "./list-item";
 import { useState } from "react";
 
 export default function Group({id, name, isOpen = false, data, selectedItem, setSelectedItem, onClick}) {
@@ -8,7 +9,15 @@ export default function Group({id, name, isOpen = false, data, selectedItem, set
     return (
       <div id={`group-${id}`}>
         <h3 onClick={toggle}>{name}</h3>
-        <List data={data} setSelectedItem={setSelectedItem} selectedItem={selectedItem} />
+          <List>
+            {data.map((file) => (
+                <ListItem key={file} display={file} 
+                  isSelected={(selectedItem == file)}
+                  clickHandler={(_) => (
+                    setSelectedItem(file)
+                  )}/>
+            ))}
+          </List>
       </div>
     )
   }
