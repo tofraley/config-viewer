@@ -36,8 +36,8 @@ export async function getStaticProps() {
 }
 
 export default function Home({features, files}) {
-  const [selectedFile, setSelectedFile] = useState(0);
   const filenames = files.map((f) => f.filename.replace('.json', ''));
+  const [selectedFile, setSelectedFile] = useState(filenames[0]);
 
   return (
     <FeatureContext.Provider value={features}>
@@ -46,7 +46,8 @@ export default function Home({features, files}) {
           <Selector data={filenames} selectedItem={selectedFile} setSelectedItem={setSelectedFile} />
         </Box>
         <Box borderColor='green'>
-          <Inspector className="text-lg font-sans" data={files[selectedFile].content} filterOptions={{ignoreCase: true}} />
+          <Inspector className="text-lg font-sans" 
+          data={files.find(f => f.filename.replace('.json', '') === selectedFile).content} filterOptions={{ignoreCase: true}} />
         </Box>
       </div>
     </FeatureContext.Provider>
