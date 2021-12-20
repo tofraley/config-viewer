@@ -1,9 +1,13 @@
 import List from "./list";
+import GroupList from "./group-list";
 import Search from "./search";
 import { useState } from "react";
+import Feature from '../components/feature'
+import UnlessFeature from "./unless-feature";
 
 export default function Selector({data, selectedItem, setSelectedItem}) {
-  const [filteredData, setFilteredData] = useState(data);
+  const [filteredData, setFilteredData] = useState(data)
+
   const filter = 
     (terms) => (
       setFilteredData(
@@ -14,7 +18,12 @@ export default function Selector({data, selectedItem, setSelectedItem}) {
   return (
     <>
       <Search changeHandler={(e) => filter(e.target.value)} />
-      <List data={filteredData} setSelectedItem={setSelectedItem} selectedItem={selectedItem} />
+      <Feature name='group'>
+        <GroupList data={filteredData} {...{selectedItem, setSelectedItem}}/>
+      </Feature>
+      <UnlessFeature name='group'>
+        <List data={filteredData} {...{setSelectedItem, selectedItem}} />
+      </UnlessFeature>
     </>
   );
 }
