@@ -17,6 +17,7 @@ function getDefaultGroups(data) {
     data: secondHalf
   }]
 }
+
 export default function useGroups(data) {
   const defaultGroups = getDefaultGroups(data)
   const [groups, setGroups] = useStorage(defaultGroups)
